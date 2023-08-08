@@ -9,6 +9,9 @@ require_once "connexion.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Immo</title>
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -17,7 +20,6 @@ require_once "connexion.php";
     <!-- la barre de navigation avec la barre de recherche-->
     <header>
         <nav>
-Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat facere odio soluta optio blanditiis quam assumenda vitae consequatur, in eius ipsam architecto dolorum voluptatibus magni magnam, animi dignissimos! Saepe, natus.
         </nav>
     </header>
 
@@ -26,6 +28,9 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat facere odio so
         <h1>
             Trouvez votre havre de paix
         </h1>
+        <div id="backgroundImg">
+            <img src="https://media.istockphoto.com/id/1125919172/photo/asphalt-road-and-sky-clouds-background.jpg?s=612x612&w=0&k=20&c=y4Gyqe83YQASnrysdcFyjBv6-LqyjQ6ipOupP1FD39s=" alt="">
+        </div>
 
         <!-- sous la barre de filtre 
         - Explorez notre sélection d'immobilier d'exception dès aujourd'hui !-->
@@ -41,7 +46,7 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat facere odio so
             <!-- les cartes du carroussel -->
             
             <?php
-            $display = $connexion -> select('bien','*');
+            $display = $connexion -> select("bien","*", "statut LIKE '%non%' LIMIT 5");
 
             foreach($display as $bien){
                 echo 
@@ -51,84 +56,11 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit. Placeat facere odio so
                         <a href="ca.php/?id_bien= ' . $bien['id_bien'] .'">
                             <div class="title">'. $bien['nom'] .'</div>
                         </a>
-                        <img src="https://media.istockphoto.com/id/949299844/it/foto/vista-prospettica-dellesterno-delledificio-contemporaneo.jpg?s=612x612&w=0&k=20&c=_DR1aRHuTEV3EYBJo1ZXq1pF4SgwB9EVWQLaBj4sC5g=" />
+                        <img src="' .$bien['photo1']. '" />
                     </div>
                 </div>'; 
             }
             ?>
-
-            <div class="carousel-item">
-                <div class="carousel-box">
-                    <div class="title">Warsaw</div>
-                    <div class="num">02</div>
-                    <img src="https://media.istockphoto.com/id/1150545984/it/foto/palazzo-moderno-di-lusso-con-piscina.jpg?s=612x612&w=0&k=20&c=Pbrai_VGc9tUviMCF1UaBErdS1YGyIVWsD29jzMZwTY=" />
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <div class="carousel-box">
-                    <div class="title">Madrid</div>
-                    <div class="num">03</div>
-                    <img src="https://media.istockphoto.com/id/1214351345/it/foto/guardando-direttamente-lo-skyline-del-quartiere-finanziario-nel-centro-di-londra-immagine-di.jpg?s=612x612&w=0&k=20&c=oNNbPzPvcQ-4RA6AeatNIxHQIafBiXmDRtUUY0Ska-I=" />
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <div class="carousel-box">
-                    <div class="title">Sydney</div>
-                    <div class="num">04</div>
-                    <img src="https://media.istockphoto.com/id/904390980/it/foto/foto-di-architettura-contemporanea-astratta.jpg?s=612x612&w=0&k=20&c=_P4Wmx5nq5MeDuimpNklKCBlrLovmCyd9lfiMKeJZDs=" />
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <div class="carousel-box">
-                    <div class="title">Istanbul</div>
-                    <div class="num">05</div>
-                    <img src="https://media.istockphoto.com/id/130408311/it/foto/piscina-allesterno-della-casa-moderna-al-crepuscolo.jpg?s=612x612&w=0&k=20&c=ZoVjx7uDjoHKmpM1ayW6UR1SQOoYh_xx-QMG_qeOYs0=" />
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <div class="carousel-box">
-                    <div class="title">Prague</div>
-                    <div class="num">06</div>
-                    <img src="https://media.istockphoto.com/id/1299954175/it/foto/villa-cubica-moderna.jpg?s=612x612&w=0&k=20&c=DhGhb3c1E3DW_fbrWJ_R_Zh0Lbwu6syFeRLsKlZ9no8=" />
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <div class="carousel-box">
-                    <div class="title">Munich</div>
-                    <div class="num">07</div>
-                    <img src="https://media.istockphoto.com/id/926689776/it/foto/vista-ad-angolo-basso-dei-grattacieli-di-new-york.jpg?s=612x612&w=0&k=20&c=DmEB0Ty7ZwDnBoU5SuA8FNevOp4G1UcECw5aS4vA9A8=" />
-                </div>
-            </div>
-
-            <div class="carousel-item">
-                <a href="">
-                    <div class="carousel-box">
-                        <div class="title">Venice</div>
-                        <div class="num">08</div>
-                        <img src="https://media.istockphoto.com/id/1191376167/it/foto/villa-dellisola.jpg?s=612x612&w=0&k=20&c=PKslWo4FdbjinohKQlK_oWL34jqAsnzMTdy2bxEAf-I=" />
-                    </div>
-                </a>
-            </div>
-
-            <div class="carousel-item">
-                <div class="carousel-box">
-                    <div class="title">Oslo</div>
-                    <div class="num">09</div>
-                    <img src="https://media.istockphoto.com/id/184316397/it/foto/londra-edifici-aziendali.jpg?s=612x612&w=0&k=20&c=XqrRxEPzFnwRFk7PQrCiu9-FPfCTPyMe5BKKaxYXCs8=" />
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="carousel-box">
-                    <div class="title">London</div>
-                    <div class="num">10</div>
-                    <img src="https://media.istockphoto.com/id/184619832/it/foto/distretto-finanziario-al-crepuscolo-londra.jpg?s=612x612&w=0&k=20&c=RAThrJOBY6vhlT6-kQpu9-9jLEzWToYfdw46S8B0Mu0=" />
-                </div>
-            </div>
         </div>
 
         <!--  

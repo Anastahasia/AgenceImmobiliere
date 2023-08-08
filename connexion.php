@@ -17,7 +17,7 @@ class maConnexion{
             $dsn = "mysql:host=$this->hote;dbname=$this->nomBaseDeDonnees;charset=utf8mb4";
             $this->connexionPDO = new PDO($dsn, $this ->utilisateur, $this ->motDePasse);
             $this->connexionPDO->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-            echo "Tu es connectée ma belle! ";
+            
 
         } catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
@@ -25,9 +25,9 @@ class maConnexion{
 
     }
 
-    public function select($table,$colonne){
+    public function select($table,$colonne, $ConditionField = 1){
         try {
-            $requete = "SELECT $colonne FROM $table";
+            $requete = "SELECT $colonne FROM $table WHERE $ConditionField";
             $resultat = $this->connexionPDO->query($requete);
             $resultat = $resultat ->fetchAll(PDO::FETCH_ASSOC);
             
@@ -50,7 +50,7 @@ class maConnexion{
 
             $requete_prepare->execute();
             return $requete_prepare;
-            echo 'insertion reussie';
+
         }catch (PDOException $e) {
             echo 'Erreur : ' . $e->getMessage();
         }
@@ -65,7 +65,7 @@ class maConnexion{
             $requete_prepare->bindValue(2, $numero,PDO::PARAM_INT);
 
             $requete_prepare->execute();
-            echo 'modification reussie';
+
             return $requete_prepare;
             
 
@@ -80,7 +80,7 @@ class maConnexion{
             $requete_prepare = $this->connexionPDO->prepare($requete);
 
             $requete_prepare->execute();
-            echo 'modification reussie';
+
             return $requete_prepare;
             
 
