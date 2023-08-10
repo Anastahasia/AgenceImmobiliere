@@ -17,25 +17,32 @@ require_once "connexion.php";
 </head>
 
 <body>
-    <section class="firstSection">
-        <h1>
-            Trouvez votre havre de paix
-        </h1>
-        <?php require_once "filtreIndex.php" ?>
+    <!-- la barre de navigation avec la barre de recherche-->
+    <header>
+        <?php
+        require_once "navbar.php";
+        ?>
+    </header>
 
-    </section>
-    <section class="secondSection">
-        <div class="card-container">
-            <h2>N'hésitez plus faites nous confiance pour votre prochain cocon</h2>
-            <div class="wrapper">
-                <div class="cols">
-                    <?php
-                    $display = $connexion->select("bien", "*", "statut LIKE '%non%'");
-                    foreach ($display as $bien) {
-                        echo
-                        " 
-                            
-                                <div class='col' ontouchstart='this.classList.toggle('hover');'>
+    <main>
+        <section class="firstSection">
+            <h1>
+                Trouvez votre havre de paix
+            </h1>
+            <?php require_once "filtreIndex.php" ?>
+
+        </section>
+        <section class="secondSection">
+            <div class="card-container">
+                <h2>N'hésitez plus faites nous confiance pour votre prochain cocon</h2>
+                <div class="wrapper">
+                    <div class="cols">
+                        <?php
+                        if (isset($_GET['location'])) {
+                            $display = $connexion->select("bien", "*", "statut LIKE '%non%' AND contrat LIKE 'location'");
+                            foreach ($display as $bien) {
+                                echo
+                                "<div class='col' ontouchstart='this.classList.toggle('hover');'>
                                     <div class='container'>
                                         <div class='front' style='background-image: url(" . $bien['photo1'] . ");background-repeat:no-repeat'>
                                             <div class='inner'>
@@ -51,11 +58,62 @@ require_once "connexion.php";
                                     </div>
                                 </div>
                             ";
-                    }
-                    ?>
+                            }
+                        } elseif (isset($_GET['vente'])) {
+                            $display = $connexion->select("bien", "*", "statut LIKE '%non%' AND contrat LIKE 'vente'");
+                            foreach ($display as $bien) {
+                                echo
+                                "<div class='col' ontouchstart='this.classList.toggle('hover');'>
+                                    <div class='container'>
+                                        <div class='front' style='background-image: url(" . $bien['photo1'] . ");background-repeat:no-repeat'>
+                                            <div class='inner'>
+                                                <p>" . $bien['nom'] . "</p>
+                                                <span>" . $bien['ville'] . "</span>
+                                            </div>
+                                        </div>
+                                        <div class='back'>
+                                            <div class='inner'>
+                                                <a href='ca.php/?id_bien= " . $bien['id_bien'] . "'><p class='description'>" . $bien['description'] . "</p></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                ";
+                            }
+                        } else
+                            $display = $connexion->select("bien", "*", "statut LIKE '%non%'");
+                        foreach ($display as $bien) {
+                            echo
+                            "   <div class='col' ontouchstart='this.classList.toggle('hover');'>
+                                    <div class='container'>
+                                        <div class='front' style='background-image: url(" . $bien['photo1'] . ");background-repeat:no-repeat'>
+                                            <div class='inner'>
+                                                <p>" . $bien['nom'] . "</p>
+                                                <span>" . $bien['ville'] . "</span>
+                                            </div>
+                                        </div>
+                                        <div class='back'>
+                                            <div class='inner'>
+                                                <a href='ca.php/?id_bien= " . $bien['id_bien'] . "'><p class='description'>" . $bien['description'] . "</p></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                ";
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
-    </section>
+        </section>
+    </main>
+
+    <footer>
+        <?php require_once "footer.php" ?>
+    </footer>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="script.js"></script>
 
 </html>

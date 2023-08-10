@@ -20,36 +20,37 @@ require_once "connexion.php";
 
     <!-- la barre de navigation avec la barre de recherche-->
     <header>
-        <nav>
-
-        </nav>
+        <?php
+        require_once "navbar.php";
+        ?>
     </header>
+    <main>
+        <!-- la première section avec le titre et la barre de filtre -->
+        <section class="firstSection">
+            <h1>
+                Trouvez votre havre de paix
+            </h1>
+            <?php require_once "filtreIndex.php" ?>
 
-    <!-- la première section avec le titre et la barre de filtre -->
-    <section class="firstSection">
-        <h1>
-            Trouvez votre havre de paix
-        </h1>
-        <?php require_once "filtreIndex.php" ?>
+            <p class="legende">- Explorez notre sélection d'immobilier d'exception dès aujourd'hui !</p>
+        </section>
+        
+        <section id="secondSection">
 
-        <p class="legende">- Explorez notre sélection d'immobilier d'exception dès aujourd'hui !</p>
-    </section>
-    <section id="secondSection">
+            <!--  le carroussel -->
+            <div class="carousel">
+                <h2>
+                    Découvrez nos appartements
+                </h2>
 
-        <!--  le carroussel -->
-        <div class="carousel">
-            <h2>
-                Découvrez nos appartements
-            </h2>
+                <!-- les cartes du carroussel -->
 
-            <!-- les cartes du carroussel -->
+                <?php
+                $display = $connexion->select("bien", "*", "statut LIKE '%non%' LIMIT 5");
 
-            <?php
-            $display = $connexion->select("bien", "*", "statut LIKE '%non%' LIMIT 5");
-
-            foreach ($display as $bien) {
-                echo
-                '<div class="carousel-item">
+                foreach ($display as $bien) {
+                    echo
+                    '<div class="carousel-item">
                     <div class="carousel-box">
                         <div class="num">' . $bien['ville'] . '</div>
                         <a href="ca.php/?id_bien= ' . $bien['id_bien'] . '">
@@ -58,13 +59,19 @@ require_once "connexion.php";
                         <img src="' . $bien['photo1'] . '" />
                     </div>
                 </div>';
-            }
-            ?>
-        </div>
+                }
+                ?>
+            </div>
 
-        <div class="cursor"></div>
-        <div class="cursor cursor2"></div>
-    </section>
+            <div class="cursor"></div>
+            <div class="cursor cursor2"></div>
+        </section>
+    </main>
+
+    <footer>
+        <?php require_once "footer.php" ?>
+    </footer>
+
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

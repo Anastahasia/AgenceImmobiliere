@@ -4,8 +4,9 @@ require_once "connexion.php";
 if (!isset($_GET['ville'])) {
     header("Location: " . 'index.php');
 };
-$ville = $_GET['ville'];
-$contrat = $_GET['contrat'];
+
+$ville = $_GET['inputVente'];
+$contrat = $_GET['contrat'];var_dump($contrat);
 $villeRecherchee = $connexion->select("bien", "*", "ville = '$ville' AND contrat = '$contrat'")
 
 ?>
