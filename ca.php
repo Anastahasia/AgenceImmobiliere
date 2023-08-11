@@ -25,9 +25,7 @@ $bienAffiche = $connexion->select("bien", "*", "id_bien = $bienSelectionne");
 <body>
     <!-- la barre de navigation avec la barre de recherche-->
     <header>
-        <?php
-        require_once "navbar.php";
-        ?>
+        <?php require_once "composants/navbar.php"; ?>
     </header>
     <main>
         <?php
@@ -39,7 +37,7 @@ $bienAffiche = $connexion->select("bien", "*", "id_bien = $bienSelectionne");
     </main>
 
     <footer>
-        <?php require_once "footer.php" ?>
+        <?php require_once "composants/footer.php" ?>
     </footer>
 
 </body>

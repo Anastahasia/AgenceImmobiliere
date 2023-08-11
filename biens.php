@@ -20,7 +20,7 @@ require_once "connexion.php";
     <!-- la barre de navigation avec la barre de recherche-->
     <header>
         <?php
-        require_once "navbar.php";
+        require_once "composants/navbar.php";
         ?>
     </header>
 
@@ -29,7 +29,7 @@ require_once "connexion.php";
             <h1>
                 Trouvez votre havre de paix
             </h1>
-            <?php require_once "filtreIndex.php" ?>
+            <?php require_once "composants/filtreIndex.php" ?>
 
         </section>
         <section class="secondSection">
@@ -80,7 +80,7 @@ require_once "connexion.php";
                                 </div>
                                 ";
                             }
-                        } else
+                        } else{
                             $display = $connexion->select("bien", "*", "statut LIKE '%non%'");
                         foreach ($display as $bien) {
                             echo
@@ -101,6 +101,7 @@ require_once "connexion.php";
                                 </div>
                                 ";
                         }
+                        }
                         ?>
                     </div>
                 </div>
@@ -109,7 +110,7 @@ require_once "connexion.php";
     </main>
 
     <footer>
-        <?php require_once "footer.php" ?>
+        <?php require_once "composants/footer.php" ?>
     </footer>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

@@ -1,13 +1,23 @@
 <?php
 require_once "connexion.php";
 
-if (!isset($_GET['ville'])) {
+// renvoie à la page acceuil si aucune recherche effectuée
+if (!isset($_GET['contrat'])) {
     header("Location: " . 'index.php');
 };
 
-$ville = $_GET['inputVente'];
-$contrat = $_GET['contrat'];var_dump($contrat);
-$villeRecherchee = $connexion->select("bien", "*", "ville = '$ville' AND contrat = '$contrat'")
+// séléctionne dans la base de donnée selon si la recherche se fait pour un achat ou pour une location
+if (isset($_GET['inputVente'])) {
+    $ville = $_GET['inputVente'];
+    $contrat = $_GET['contrat'];
+    $villeRecherchee = $connexion->select("bien", "*", "ville = '$ville' AND contrat = '$contrat'");
+} else if (isset($_GET['inputLocation'])) {
+    $ville = $_GET['inputLocation'];
+    $contrat = $_GET['contrat'];
+    $villeRecherchee = $connexion->select("bien", "*", "ville = '$ville' AND contrat = '$contrat'");
+}
+
+
 
 ?>
 <!DOCTYPE html>
@@ -26,25 +36,38 @@ $villeRecherchee = $connexion->select("bien", "*", "ville = '$ville' AND contrat
 </head>
 
 <body>
-    <section class="firstSection">
-        <?php
-        if (!empty($villeRecherchee)) {
-            echo '<h1>
-                        Voici les habitations en ' . $contrat . ' à ' . $ville . '
-                    </h1>';
-        } else {
-            echo '<a href=""><h1>Voir tous nos biens</h1></a>';
-        }
-        require_once "filtreIndex.php" ?>
-    </section>
-    <section class="secondSection">
-        <div class="wrapper">
-            <div class="cols">
-                <?php
-                if (!empty($villeRecherchee)) {
-                    foreach ($villeRecherchee as $bien) {
-                        echo
-                        " 
+    <!-- la barre de navigation avec la barre de recherche-->
+    <header>
+        <?php require_once "composants/navbar.php"; ?>
+    </header>
+    
+    <main>
+        <!-- la première section avec la barre de filtre et des infos sur la recherche -->
+        <section class="firstSection">
+            <?php
+            if (!empty($villeRecherchee)) {
+                echo '<h1>
+                    Voici les habitations en ' . $contrat . ' à <span class="ville">' . $ville . '</span> 
+                </h1>';
+                require_once "composants/filtreIndex.php";
+            } else {
+                echo '<h1>
+                    Sorry, pas de ' . $contrat . ' à <span class="ville">' . $ville . '</span> !
+                </h1>';
+                require_once "composants/filtreIndex.php";
+                echo "<p class='legende'>Aucun résultats pour votre recherche réessayer avec une autre ville</p>";
+            }
+            ?>
+        </section>
+        <!-- la deuxième section qui contient les résultats de recherche sous forme de cartes -->
+        <section class="secondSection">
+            <div class="wrapper">
+                <div class="cols">
+                    <?php
+                    if (!empty($villeRecherchee)) {
+                        foreach ($villeRecherchee as $bien) {
+                            echo
+                            " 
                         
                             <div class='col' ontouchstart='this.classList.toggle('hover');'>
                                 <div class='container'>
@@ -62,15 +85,22 @@ $villeRecherchee = $connexion->select("bien", "*", "ville = '$ville' AND contrat
                                 </div>
                             </div>
                         ";
+                        }
+                    } else {
+                        echo '<a href="biens.php"><h3>Voir tous nos biens</h3></a>';
                     }
-                } else {
-                    echo "Aucun résultats pour votre recherche réessayer avec une autre ville";
-                }
-
-                ?>
+                    ?>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
+
+    <footer>
+        <?php require_once "composants/footer.php" ?>
+    </footer>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="script.js"></script>
 
 </html>

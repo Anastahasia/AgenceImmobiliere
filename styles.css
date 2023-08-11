@@ -16,6 +16,7 @@ h1 {
     font-size: 35px;
     text-align: center;
     margin-top: 2%;
+    margin-bottom: 0;
 }
 
 /* barre de navigation */
@@ -168,7 +169,7 @@ header {
 
 .nav-itema:hover:first-child .navlink {
     color: #D4A373 !important;
-    background-image: url('home.png');
+    background-image: url('images/home.png');
     background-repeat: no-repeat;
     display: block;
     background-position: center top;
@@ -177,7 +178,7 @@ header {
 
 .nav-itema:hover:nth-child(2) .navlink {
     color: #D4A373 !important;
-    background-image: url('home.png');
+    background-image: url('images/home.png');
     background-repeat: no-repeat;
     display: block;
     background-position: center top;
@@ -186,7 +187,7 @@ header {
 
 .nav-itema:hover:nth-child(3) .navlink {
     color: #D4A373 !important;
-    background-image: url('home.png');
+    background-image: url('images/home.png');
     background-repeat: no-repeat;
     display: block;
     background-position: center top;
@@ -259,7 +260,9 @@ header {
         border: none;
         vertical-align: 0;
     }
-
+    .fa-user{
+        font-size: 22px;
+    }
     .nav-itema a {
         font-size: 14px;
     }
@@ -311,17 +314,22 @@ header {
 
 /* le footer */
 
-footer div {
-    background-color: #8b5e34;
+
+#mention {
+    background-color: #d4a373;
     text-align: center;
     display: block;
-    padding-left: 20%;
-    padding-right: 20%;
-    padding-top: 1.5em;
-    padding-bottom: 1.5em;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
 }
 
-/*----------barre de filtre------------*/
+@media (max-width: 991px) {
+    #mention {
+        font-size: 70%;
+    }
+}
+
+/*----------barre de recherche------------*/
 .filtre {
     width: 60%;
     justify-self: center;
@@ -401,10 +409,28 @@ footer div {
 
 .corpsFiltre {
     background-color: #fff;
+    height:45%;
+    padding: 0 2%;
 }
 
 .corpsFiltre form {
-    display: grid;
+    height: 100%;
+}
+.inputFiltre{
+    margin-top: 1.5%;
+    display: flex;
+    gap: 3%;
+}
+.inputFiltre input{
+    width:81%;
+    padding: .7%;
+}
+.inputFiltre button{
+    font-family: 'Roboto', serif;
+    font-weight: bold;
+    border-style: none;
+    background-color: #d4a373;
+    padding: .5% 1%;
 }
 
 @media(min-width: 992px) {
@@ -444,6 +470,18 @@ footer div {
     .filtre {
         width: 95%;
     }
+    .inputFiltre{
+        gap: 0;
+    }
+    .inputFiltre input{
+        width: 70%;
+    }
+    .inputFiltre button{
+        display: inline-flex;
+        align-items: center;
+        gap:1%;
+        font-size: 70%;
+    }
 }
 
 /* la premiere section commune */
@@ -472,6 +510,7 @@ footer div {
 
 
 .legende {
+    margin: 0;
     font-size: 14px;
     text-align: center;
     color: #E9EDC9;
@@ -645,7 +684,7 @@ footer div {
     color: #d4a373;
     text-decoration: none;
     font-size: 26px;
-    padding-left: .5%;
+    padding-left: 6.5%;
 }
 
 .wrapper {
@@ -836,4 +875,8 @@ footer div {
     .card-container h2 {
         font-size: 16px;
     }
+}
+
+.ville{
+    text-transform: capitalize;
 }

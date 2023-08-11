@@ -21,7 +21,7 @@ require_once "connexion.php";
     <!-- la barre de navigation avec la barre de recherche-->
     <header>
         <?php
-        require_once "navbar.php";
+        require_once "composants/navbar.php";
         ?>
     </header>
     <main>
@@ -30,9 +30,10 @@ require_once "connexion.php";
             <h1>
                 Trouvez votre havre de paix
             </h1>
-            <?php require_once "filtreIndex.php" ?>
-
             <p class="legende">- Explorez notre sélection d'immobilier d'exception dès aujourd'hui !</p>
+            <?php require_once "composants/filtreIndex.php" ?>
+
+            
         </section>
         
         <section id="secondSection">
@@ -46,7 +47,7 @@ require_once "connexion.php";
                 <!-- les cartes du carroussel -->
 
                 <?php
-                $display = $connexion->select("bien", "*", "statut LIKE '%non%' LIMIT 5");
+                $display = $connexion->select("bien", "*", "statut LIKE '%non%' AND type = 'appartement' LIMIT 5");
 
                 foreach ($display as $bien) {
                     echo
@@ -69,7 +70,7 @@ require_once "connexion.php";
     </main>
 
     <footer>
-        <?php require_once "footer.php" ?>
+        <?php require_once "composants/footer.php" ?>
     </footer>
 
 </body>

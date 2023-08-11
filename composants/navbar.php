@@ -10,13 +10,13 @@
                     <div class="collapse navbar-collapse">
                         <ul class="navbar-nav ml-auto py-4 py-md-0">
                             <li class="nav-itema pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="navlink" href="biens.php">Acheter</a>
+                                <a class="navlink" href="biens.php?vente">Acheter</a>
                             </li>
                             <li class="nav-itema pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="navlink" href="biens.php?location=location">Louer</a>
+                                <a class="navlink" href="./biens.php?location">Louer</a>
                             </li>
                             <li class="nav-itema pl-4 pl-md-0 ml-0 ml-md-4">
-                                <a class="navlink" href="contact.php'">Nous contacter</a>
+                                <a class="navlink" href="./index.php">Nous contacter</a>
                             </li>
                             <li class="nav-itema pl-4 pl-md-0 ml-0 ml-md-4">
                             <a class="navlink" href="#"><i class="fa-regular fa-user" style="color: #000000;"></i></a>
@@ -31,14 +31,3 @@
     </div>
 
 </div>
-
-<script>
-    function burgerMenu() {
-        var x = document.getElementById("myTopnav");
-        if (x.className === "topnav") {
-            x.className += " responsive";
-        } else {
-            x.className = "topnav";
-        }
-    }
-</script>
