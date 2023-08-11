@@ -37,6 +37,7 @@ require_once "connexion.php";
                 <h2>N'hésitez plus faites nous confiance pour votre prochain cocon</h2>
                 <div class="wrapper">
                     <div class="cols">
+                        <!-- Affiche les logements disponibles en location -->
                         <?php
                         if (isset($_GET['location'])) {
                             $display = $connexion->select("bien", "*", "statut LIKE '%non%' AND contrat LIKE 'location'");
@@ -59,7 +60,9 @@ require_once "connexion.php";
                                 </div>
                             ";
                             }
-                        } elseif (isset($_GET['vente'])) {
+                            
+                        } // <!-- Affiche les logements disponibles à la vente -->
+                        elseif (isset($_GET['vente'])) {
                             $display = $connexion->select("bien", "*", "statut LIKE '%non%' AND contrat LIKE 'vente'");
                             foreach ($display as $bien) {
                                 echo
@@ -80,7 +83,8 @@ require_once "connexion.php";
                                 </div>
                                 ";
                             }
-                        } else{
+                         } // <!-- Affiche tous les logements disponibles à la vente et en location-->
+                        else{
                             $display = $connexion->select("bien", "*", "statut LIKE '%non%'");
                         foreach ($display as $bien) {
                             echo

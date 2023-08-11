@@ -18,9 +18,6 @@
                             <li class="nav-itema pl-4 pl-md-0 ml-0 ml-md-4">
                                 <a class="navlink" href="./index.php">Nous contacter</a>
                             </li>
-                            <li class="nav-itema pl-4 pl-md-0 ml-0 ml-md-4">
-                            <a class="navlink" href="#"><i class="fa-regular fa-user" style="color: #000000;"></i></a>
-                            </li>
                     </div>
                     <a href="javascript:void(0);" class="icon" onclick="burgerMenu()">
                         <i class="fa fa-bars"></i>
