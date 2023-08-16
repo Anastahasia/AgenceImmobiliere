@@ -6,62 +6,29 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <div class="hori-selector"></div>
-                <li class="nav-item active" id="location">
-                    <a class="nav-link" href="javascript:void(0);">Louer</a>
+                <li class="nav-item active">
+                    <a class="nav-link"  id="location" href="javascript:void(0);">Louer</a>
                 </li>
-                <li class="nav-item" id="vente">
-                    <a class="nav-link" href="javascript:void(0);">Acheter</a>
+                <li class="nav-item">
+                    <a class="nav-link" id="vente" href="javascript:void(0);">Acheter</a>
                 </li>
             </ul>
         </div>
     </div>
     <div class="corpsFiltre">
         <form id="villeLocation" action="resultats.php" method="get">
-            <label for="inputLocation"> Où souhaitez-vous louer ? </label>
+            <label for="input" id="labelFiltre"> 
+                <span id="labelLocation">
+                    Où souhaitez-vous louer ? 
+                </span>
+                <span id="labelVente">
+                    Où souhaitez-vous acheter ?
+                </span>
+            </label>
             <div class="inputFiltre">
-                <input type="text" id="inputLocation" name="inputLocation">
-                <button type="submit" name="contrat" value="location"> <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>Rechercher</button>
-            </div>
-        </form>
-
-        <form id="villeVente" action="resultats.php" method="get">
-            <label for="inputVente"> Où souhaitez-vous acheter ? </label>
-            <div class="inputFiltre">
-                <input type="text" id="inputVente" name="inputVente">
-                <button type="submit" name="contrat" value="vente"> <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>Rechercher</button>
+                <input type="text" id="input" name="inputLocation" >
+                <button type="submit" id="boutonVille" name="contrat" value="location"> <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>Rechercher</button>
             </div>
         </form>
     </div>
 </div>
-
-<!-- afficher un seul formulaire selon le choix -->
-<script>
-    var togg1 = document.getElementById("location");
-    var togg2 = document.getElementById("vente");
-    let d1 = document.getElementById("villeLocation");
-    let d2 = document.getElementById("villeVente");
-
-    if (togg1.className === 'nav-item active') {
-        d2.style.display = "none";
-    } else {
-        d2.style.display = "block";
-
-    }
-
-    togg1.addEventListener("onclick", () => {
-        if (getComputedStyle(d1).display != "none") {
-            d1.style.display = "none";
-        } else {
-            d1.style.display = "block";
-        }
-    })
-
-    function togg() {
-        if (getComputedStyle(d2).display != "none") {
-            d2.style.display = "none";
-        } else {
-            d2.style.display = "block";
-        }
-    };
-    togg2.onclick = togg;
-</script>

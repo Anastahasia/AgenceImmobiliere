@@ -83,20 +83,31 @@ $(".navbar-toggler").click(function(){
 	setTimeout(function(){ test(); });
 });
 
-// // --------------add active class-on another-page move----------
-// jQuery(document).ready(function($){
-// 	// Get current path and find target link
-// 	var path = window.location.pathname.split("/ca.php").pop();
+//l'affichage du filtre // barre de filtre index 
+var togg1 = document.getElementById("location");
+var togg2 = document.getElementById("vente");
+let d1 = document.getElementById("input");
+let d2 = document.getElementById("boutonVille");
 
-// 	// Account for home page with empty path
-// 	if ( path == '' ) {
-// 		path = 'index.html';
-// 	}
+//garde le label achat caché
+if (d1.name === 'inputLocation') {
+	document.getElementById("labelVente").style.display = "none";
+} 
 
-// 	var target = $('#navbarSupportedContent ul li a[href="'+path+'"]');
-// 	// Add active class to target link
-// 	target.parent().addClass('active');
-// });
+togg1.addEventListener("click", function() {
+	d1.setAttribute("name","inputLocation"); //modifie le name de l'input en inputLocation
+	boutonVille.setAttribute("value","location"); //modifie la value du bouton
+	document.getElementById("labelLocation").style.display = "block";
+	document.getElementById("labelVente").style.display = "none";
+	// console.log("location");
+})
+togg2.addEventListener("click", function() {
+	d1.setAttribute("name","inputVente");
+	boutonVille.setAttribute("value","vente");
+	document.getElementById("labelLocation").style.display = "none"; // fait disparaitre le label labelLocation
+	document.getElementById("labelVente").style.display = "block";
+	// console.log("vente");
+})
 
 //caroussel des habitations srur la page d'accueil
 /*--------------------
@@ -194,4 +205,3 @@ document.addEventListener('touchstart', handleMouseDown)
 document.addEventListener('touchmove', handleMouseMove)
 document.addEventListener('touchend', handleMouseUp)
 
-// barre de filtre index faire disparaitre un formulaire
